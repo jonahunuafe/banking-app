@@ -1,6 +1,6 @@
 "use server";
 
-export const signIn() = async () => {
+export const signIn = async () => {
   try {
     // Mutation / Database / Make fetch
   } catch(error) {
@@ -8,7 +8,7 @@ export const signIn() = async () => {
   }
 }
 
-export const signUp(userData: SignUpParams) = async () => {
+export const signUp = async (userData: SignUpParams) => {
   try {
     // Create a use account
   } catch(error) {

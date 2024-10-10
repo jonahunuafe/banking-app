@@ -25,7 +25,7 @@ declare type LoginUser = {
   password: string;
 };
 
-declare type ?User = {
+declare type User = {
   $id: string;
   email: string;
   userId: string;
@@ -33,6 +33,7 @@ declare type ?User = {
   dwollaCustomerId: string;
   firstName: string;
   lastName: string;
+  name: string;
   address1: string;
   city: string;
   state: string;

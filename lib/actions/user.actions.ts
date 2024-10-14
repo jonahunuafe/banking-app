@@ -126,6 +126,15 @@ export const exchangePublicToken = async ({
     const processorTokenResponse = await plaidClient.processorTokenCreate(request);
     const processorToken = processorTokenResponse.data.processor_token;
 
+    // Create a funding source URL for the account using the Dwolla customer ID, processor token and bank name
+    const fundingSourceUrl = await addFundingSource({
+      dwollaCustomerId: user.dwollaCustomerId,
+      processorToken,
+      bankName: accountData.name
+    });
+    // If the funding source URL is not created , throw an error
+    if(!fundingSourceUrl) throw Error;
+
     
   } catch(error) {
     console.error("An error occurred while creating exhange token:", error);

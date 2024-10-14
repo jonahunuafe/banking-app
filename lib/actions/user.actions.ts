@@ -122,6 +122,11 @@ export const exchangePublicToken = async ({
     };
 
     
+    // Generate a processor token
+    const processorTokenResponse = await plaidClient.processorTokenCreate(request);
+    const processorToken = processorTokenResponse.data.processor_token;
+
+    
   } catch(error) {
     console.error("An error occurred while creating exhange token:", error);
   }

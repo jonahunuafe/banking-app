@@ -113,6 +113,14 @@ export const exchangePublicToken = async ({
     });
 
     const accountData = accountsResponse.data.accounts[0]
+
+    // Create a processor token from Dwolla using the access token and account ID
+    const request: ProcessorTokenCreateRequest = {
+      access_token: accessToken,
+      account_id: accountData.account_id,
+      processor: "dwolla" as ProcessorTokenCreateRequestProcessorEnum,
+    };
+
     
   } catch(error) {
     console.error("An error occurred while creating exhange token:", error);

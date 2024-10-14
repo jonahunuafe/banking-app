@@ -135,7 +135,23 @@ export const exchangePublicToken = async ({
     // If the funding source URL is not created , throw an error
     if(!fundingSourceUrl) throw Error;
 
-    
+    // Create a bank account using the user ID, item ID, account ID, accessToken, funding source URL, and sharable ID
+    await createBankAccount({
+      userId: user.$id,
+      bankId: itemId,
+      accountId: accountData.account_id,
+      accessToken,
+      fundingSourceUrl,
+      sharableId: encryptId(accountData.account_id),
+    });
+
+    // Revalidate the path to reflect the changes
+    revalidatePath("/");
+
+    // Return a success message
+    return parseStringify({
+      publicTokenExchange: "complete"
+    });
   } catch(error) {
     console.error("An error occurred while creating exhange token:", error);
   }
